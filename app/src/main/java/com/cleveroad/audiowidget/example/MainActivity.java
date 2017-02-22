@@ -72,7 +72,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                         }
                         MusicService.playTrack(MainActivity.this, item);
                         //openFragment();
-                        AudioVisualizationFragment.newInstance();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
+                                .addToBackStack(null)
+                                .commit();
                     }
                 });
 
