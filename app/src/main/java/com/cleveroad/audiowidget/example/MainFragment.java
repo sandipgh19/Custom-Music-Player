@@ -37,7 +37,7 @@ public class MainFragment extends ListFragment implements AdapterView.OnItemClic
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.container, AudioVisualizationFragment.newInstance())
+                                    .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
                                     .addToBackStack(null)
                                     .commit();
                         }
