@@ -22,34 +22,10 @@ public class MainFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       // ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.selection_items, android.R.layout.simple_list_item_1);
-        //setListAdapter(adapter);
-        //getListView().setOnItemClickListener(this);
-       // AudioVisualizationFragment.newInstance();
 
                         getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
+                                .replace(R.id.container, AudioVisualizationFragment.newInstance())
                                 .addToBackStack(null)
                                 .commit();
     }
-
-   /* @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == 0) {
-            new AlertDialog.Builder(getContext())
-                    .setTitle("Audio Visualization")
-                    .setMessage("Open any music player and play your favorite songs. Audio Visualizer will detect sound and animate.")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
-                                    .addToBackStack(null)
-                                    .commit();
-
-                        }
-                    })
-                    .show();
-        }
-    }*/
 }

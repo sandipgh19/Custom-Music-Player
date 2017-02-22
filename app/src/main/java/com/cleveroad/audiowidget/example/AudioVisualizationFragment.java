@@ -63,4 +63,5 @@ public class AudioVisualizationFragment extends Fragment {
         audioVisualization.release();
         super.onDestroyView();
     }
+
 }

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                         }
                         MusicService.playTrack(MainActivity.this, item);
                         openFragment();
+                       // AudioVisualizationFragment.newInstance();
                     }
                 });
 
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
     private void openFragment() {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.recycler_view, MainFragment.newInstance())
+                .add(R.id.container, MainFragment.newInstance())
                 .commit();
     }
 
