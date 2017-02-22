@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private MusicAdapter adapter;
     private EmptyViewObserver emptyViewObserver;
+    private static final int REQUEST_CODE = 1;
+    private boolean shouldOpenFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                             MusicService.setTracks(MainActivity.this, adapter.getSnapshot().toArray(new MusicItem[adapter.getNonFilteredCount()]));
                         }
                         MusicService.playTrack(MainActivity.this, item);
+                        openFragment();
                     }
                 });
 
@@ -98,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         checkReadStoragePermission();
     }
+    private void openFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, MainFragment.newInstance())
+                .commit();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -124,12 +132,33 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
             onPermissionsNotGranted();
         }
+        if (requestCode == REQUEST_CODE) {
+            boolean bothGranted = true;
+            for (int i = 0; i < permissions.length; i++) {
+                if (Manifest.permission.RECORD_AUDIO.equals(permissions[i]) || Manifest.permission.MODIFY_AUDIO_SETTINGS.equals(permissions[i])) {
+                    bothGranted &= grantResults[i] == PackageManager.PERMISSION_GRANTED;
+                }
+            }
+            if (bothGranted) {
+                shouldOpenFragment = true;
+            } else {
+                permissionsNotGranted();
+            }
+        }
+    }
+    private void permissionsNotGranted() {
+        Toast.makeText(this, R.string.toast_permissions_not_granted, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         MusicService.setState(this, false);
+        if (shouldOpenFragment) {
+            shouldOpenFragment = false;
+            openFragment();
+        }
     }
 
     @Override
