@@ -55,27 +55,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        adapter = new MusicAdapter(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        emptyViewObserver = new EmptyViewObserver(emptyView);
-        emptyViewObserver.bind(recyclerView);
-        MusicFilter filter = new MusicFilter(ContextCompat.getColor(this, R.color.colorAccent));
-        adapter.withFilter(filter);
-        ItemClickSupport.addTo(recyclerView)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(RecyclerView parent, View view, int position, long id) {
-                        MusicItem item = adapter.getItem(position);
-                        if (!isServiceRunning(MusicService.class)) {
-                            MusicService.setTracks(MainActivity.this, adapter.getSnapshot().toArray(new MusicItem[adapter.getNonFilteredCount()]));
+            ButterKnife.bind(this);
+            adapter = new MusicAdapter(this);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            recyclerView.setAdapter(adapter);
+            emptyViewObserver = new EmptyViewObserver(emptyView);
+            emptyViewObserver.bind(recyclerView);
+            MusicFilter filter = new MusicFilter(ContextCompat.getColor(this, R.color.colorAccent));
+            adapter.withFilter(filter);
+            ItemClickSupport.addTo(recyclerView)
+                    .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(RecyclerView parent, View view, int position, long id) {
+                            MusicItem item = adapter.getItem(position);
+                            if (!isServiceRunning(MusicService.class)) {
+                                MusicService.setTracks(MainActivity.this, adapter.getSnapshot().toArray(new MusicItem[adapter.getNonFilteredCount()]));
+                            }
+                            MusicService.playTrack(MainActivity.this, item);
+                            openFragment();
+                            // AudioVisualizationFragment.newInstance();
                         }
-                        MusicService.playTrack(MainActivity.this, item);
-                        openFragment();
-                       // AudioVisualizationFragment.newInstance();
-                    }
-                });
+                    });
 
         // check if we can draw overlays
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(MainActivity.this)) {

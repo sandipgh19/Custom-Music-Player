@@ -32,6 +32,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$VERSION_SUPPORT_LIB"
     compile project(':audiowidget')
     compile project(':library')
+   // compile 'com.cleveroad:audiovisualization:0.9.1'
 
     compile "com.jakewharton:butterknife:$VERSION_BUTTER_KNIFE"
     compile "com.github.bumptech.glide:glide:$VERSION_GLIDE"

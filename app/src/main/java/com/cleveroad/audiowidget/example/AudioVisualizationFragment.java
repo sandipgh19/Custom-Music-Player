@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.cleveroad.audiovisualization.AudioVisualization;
 import com.cleveroad.audiovisualization.DbmHandler;
 import com.cleveroad.audiovisualization.GLAudioVisualizationView;
+import com.cleveroad.audiovisualization.SpeechRecognizerDbmHandler;
 
 /**
  * Created by sandip on 2/22/2017.
@@ -44,6 +46,7 @@ public class AudioVisualizationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         audioVisualization = (AudioVisualization) view;
         audioVisualization.linkTo(DbmHandler.Factory.newVisualizerHandler(getContext(), 0));
+
     }
 
     @Override
