@@ -29,7 +29,7 @@ public class MainFragment extends ListFragment {
 
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
-                               // .addToBackStack(null)
+                                .addToBackStack(null)
                                 .commit();
     }
 
