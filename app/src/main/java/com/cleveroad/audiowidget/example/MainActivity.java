@@ -71,11 +71,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                             MusicService.setTracks(MainActivity.this, adapter.getSnapshot().toArray(new MusicItem[adapter.getNonFilteredCount()]));
                         }
                         MusicService.playTrack(MainActivity.this, item);
-                        //openFragment();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
-                                .addToBackStack(null)
-                                .commit();
+                        openFragment();
                     }
                 });
 

@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
  * Created by sandip on 2/22/2017.
  */
 
-public class MainFragment extends ListFragment implements AdapterView.OnItemClickListener {
+public class MainFragment extends ListFragment {
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -22,12 +22,18 @@ public class MainFragment extends ListFragment implements AdapterView.OnItemClic
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.selection_items, android.R.layout.simple_list_item_1);
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(this);
+       // ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.selection_items, android.R.layout.simple_list_item_1);
+        //setListAdapter(adapter);
+        //getListView().setOnItemClickListener(this);
+       // AudioVisualizationFragment.newInstance();
+
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
+                               // .addToBackStack(null)
+                                .commit();
     }
 
-    @Override
+   /* @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
             new AlertDialog.Builder(getContext())
@@ -40,9 +46,10 @@ public class MainFragment extends ListFragment implements AdapterView.OnItemClic
                                     .replace(R.id.recycler_view, AudioVisualizationFragment.newInstance())
                                     .addToBackStack(null)
                                     .commit();
+
                         }
                     })
                     .show();
         }
-    }
+    }*/
 }
