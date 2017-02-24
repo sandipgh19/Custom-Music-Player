@@ -18,6 +18,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cleveroad.audiowidget.AudioWidget;
+
 /**
  * Created by sandip on 2/24/2017.
  */
@@ -39,6 +41,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
     // Media Player
     private  MediaPlayer mp;
     // Handler to update UI timer, progress bar etc,.
+    private AudioWidget audioWidget;
     private Handler mHandler = new Handler();;
     private SongsManager songManager;
     private Utilities utils;
