@@ -1,6 +1,7 @@
 package com.cleveroad.audiowidget.example;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
         switch (v.getId())
         {
 
+
         }
     }
 
@@ -76,4 +78,3 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements View.OnCli
         return convertView;
     }
 }
-

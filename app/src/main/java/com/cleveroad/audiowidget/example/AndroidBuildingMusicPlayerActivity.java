@@ -51,8 +51,12 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
     private boolean isShuffle = false;
     private boolean isRepeat = false;
    // private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
-    final String song_url[]={};
-    final String song_name[]={"Song 1", "Song 2", "Song 3", "Song 4", "Song 5", "Song 6","Song 7"};
+    final String song_url[]={"http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+                            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+                            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+                            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+                            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3"};
+    final String song_name[]={"Song 1", "Song 2", "Song 3", "Song 4", "Song 5"};
 
 
 

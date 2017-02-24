@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlayListActivity"/>
+        <activity android:name=".AndroidBuildingMusicPlayerActivity"/>
 
         <service
             android:name=".MusicService"
