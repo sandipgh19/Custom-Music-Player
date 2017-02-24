@@ -7,6 +7,7 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
@@ -46,7 +47,10 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
     private int currentSongIndex = 0;
     private boolean isShuffle = false;
     private boolean isRepeat = false;
-    private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+   // private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+    final String song_url[]={};
+    final String song_name[]={"Song 1", "Song 2", "Song 3", "Song 4", "Song 5", "Song 6","Song 7"};
+
 
 
     @Override
@@ -70,7 +74,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
 
         // Mediaplayer
         mp = new MediaPlayer();
-        songManager = new SongsManager();
+        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        //songManager = new SongsManager();
         utils = new Utilities();
 
         // Listeners
@@ -78,7 +83,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
         mp.setOnCompletionListener(this); // Important
 
         // Getting all songs list
-        songsList = songManager.getPlayList();
+       // songsList = songManager.getPlayList();
 
         // By default play first song
         playSong(0);
@@ -163,7 +168,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
             @Override
             public void onClick(View arg0) {
                 // check if next song is there or not
-                if(currentSongIndex < (songsList.size() - 1)){
+                if(currentSongIndex < (song_url.length - 1)){
                     playSong(currentSongIndex + 1);
                     currentSongIndex = currentSongIndex + 1;
                 }else{
@@ -188,8 +193,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
                     currentSongIndex = currentSongIndex - 1;
                 }else{
                     // play last song
-                    playSong(songsList.size() - 1);
-                    currentSongIndex = songsList.size() - 1;
+                    playSong(song_url.length - 1);
+                    currentSongIndex = song_url.length - 1;
                 }
 
             }
@@ -251,7 +256,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
 
             @Override
             public void onClick(View arg0) {
-                Intent i = new Intent(getApplicationContext(), PlayListActivity.class);
+                Intent i = new Intent(getApplicationContext(), ListSongs.class);
                 startActivityForResult(i, 100);
             }
         });
@@ -282,11 +287,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
         // Play song
         try {
             mp.reset();
-            mp.setDataSource(songsList.get(songIndex).get("songPath"));
+            mp.setDataSource(song_url[songIndex]);
             mp.prepare();
             mp.start();
             // Displaying Song title
-            String songTitle = songsList.get(songIndex).get("songTitle");
+            String songTitle = song_name[songIndex];
             songTitleLabel.setText(songTitle);
 
             // Changing Button Image to pause image
@@ -385,11 +390,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements OnCo
         } else if(isShuffle){
             // shuffle is on - play a random song
             Random rand = new Random();
-            currentSongIndex = rand.nextInt((songsList.size() - 1) - 0 + 1) + 0;
+            currentSongIndex = rand.nextInt((song_url.length - 1) - 0 + 1) + 0;
             playSong(currentSongIndex);
         } else{
             // no repeat or shuffle ON - play next song
-            if(currentSongIndex < (songsList.size() - 1)){
+            if(currentSongIndex < (song_url.length - 1)){
                 playSong(currentSongIndex + 1);
                 currentSongIndex = currentSongIndex + 1;
             }else{
