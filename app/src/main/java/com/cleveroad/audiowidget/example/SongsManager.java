@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SongsManager {
 
-    final String MEDIA_PATH = "http://gaana.com/song/whats-up-230";
+    final int MEDIA_PATH = R.raw.music1;
     private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
     // Constructor
@@ -24,7 +24,7 @@ public class SongsManager {
      * and store the details in ArrayList
      * */
     public ArrayList<HashMap<String, String>> getPlayList(){
-        File home = new File(MEDIA_PATH);
+        File home = new File(String.valueOf(MEDIA_PATH));
 
         if (home.listFiles(new FileExtensionFilter()).length > 0) {
             for (File file : home.listFiles(new FileExtensionFilter())) {
