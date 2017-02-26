@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int REQUEST_CODE = 1;
     private boolean shouldOpenFragment;
 
+    final String song_url[]={"http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3",
+            "http://cyberindia.in/music/down/53512289/427184/NGZhNXJTbkUwV0s4c3hGTlFPRktucmsrQXI4U0UvOHlrdktmS0NRZFdWamNDUUhuaGc=/Asol+Nakol+-+Pranab+Ray.mp3"};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                                 MusicService.setTracks(MainActivity.this, adapter.getSnapshot().toArray(new MusicItem[adapter.getNonFilteredCount()]));
                             }
                             MusicService.playTrack(MainActivity.this, item);
-                            openFragment();
+                           // openFragment();
                             // AudioVisualizationFragment.newInstance();
                         }
                     });
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE) {
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse(String.valueOf(song_url)));
                         startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
                     } else if (which == DialogInterface.BUTTON_NEGATIVE) {
                         onPermissionsNotGranted();
@@ -124,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == EXT_STORAGE_PERMISSION_REQ_CODE) {
+       /* if (requestCode == EXT_STORAGE_PERMISSION_REQ_CODE) {
             for (int i = 0; i < permissions.length; i++) {
                 if (Manifest.permission.READ_EXTERNAL_STORAGE.equals(permissions[i]) &&
                         grantResults[i] == PackageManager.PERMISSION_GRANTED) {
@@ -146,7 +153,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             } else {
                 permissionsNotGranted();
             }
-        }
+        }*/
+       for(int i=0; i< song_url.length;i++){
+           loadMusic();
+           return;
+       }
     }
     private void permissionsNotGranted() {
         Toast.makeText(this, R.string.toast_permissions_not_granted, Toast.LENGTH_SHORT).show();
@@ -206,7 +217,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      * Load music.
      */
     private void loadMusic() {
-        getSupportLoaderManager().initLoader(MUSIC_LOADER_ID, null, this);
+        //getSupportLoaderManager().initLoader(MUSIC_LOADER_ID, null, this);
+
+
+
     }
 
     /**

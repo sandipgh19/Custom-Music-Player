@@ -1,8 +1,17 @@
 package com.cleveroad.audiowidget.example;
 
+import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AdapterView.OnItemClickListener;
 import android.view.View;
@@ -10,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +32,8 @@ public class ListSongs extends ListActivity {
     ArrayList<DataModel> dataModels;
     ListView listView;
     private static CustomAdapter adapter;
+    private static final int MUSIC_LOADER_ID = 1;
+    private static final int OVERLAY_PERMISSION_REQ_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,37 +57,29 @@ public class ListSongs extends ListActivity {
                 // Sending songIndex to PlayerActivity
                 in.putExtra("songIndex", songIndex);
                 //setResult(100, in);
-                startActivity(in);
+
+              /*  if (!isServiceRunning(MusicService.class)) {
+                    MusicService.setTracks(ListSongs.this, songIndex);
+                }
+                MusicService.playTrack(ListSongs.this, songIndex);
+                //startActivity(in);*/
 
             }
         });
+    }
 
-       /* listView=(ListView)findViewById(R.id.list);
+    private void onPermissionsNotGranted() {
+        Toast.makeText(this, R.string.toast_permissions_not_granted, Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
-        dataModels= new ArrayList<>();
-
-        dataModels.add(new DataModel("Song 1"));
-        dataModels.add(new DataModel("Song 2"));
-        dataModels.add(new DataModel("Song 3"));
-        dataModels.add(new DataModel("Song 4"));
-        dataModels.add(new DataModel("Song 5"));
-
-
-        adapter= new CustomAdapter(dataModels,getApplicationContext());
-
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                DataModel dataModel= dataModels.get(position);
-                int songIndex = position;
-                 Intent in = new Intent(getApplicationContext(),AndroidBuildingMusicPlayerActivity.class);
-                // Sending songIndex to PlayerActivity
-                in.putExtra("songIndex", songIndex);
-                setResult(100, in);
-
+    private boolean isServiceRunning(@NonNull Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
             }
-        });*/
+        }
+        return false;
     }
 }

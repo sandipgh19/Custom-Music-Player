@@ -1,35 +1,33 @@
 package com.cleveroad.audiowidget.example;
 
 import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.os.Build;
-import android.os.IBinder;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.widget.Toast;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.graphics.Bitmap;
+        import android.graphics.drawable.Drawable;
+        import android.media.AudioManager;
+        import android.media.MediaPlayer;
+        import android.os.Build;
+        import android.os.IBinder;
+        import android.preference.PreferenceManager;
+        import android.provider.Settings;
+        import android.support.annotation.NonNull;
+        import android.support.annotation.Nullable;
+        import android.util.Log;
+        import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.cleveroad.audiowidget.AudioWidget;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
+        import com.bumptech.glide.Glide;
+        import com.bumptech.glide.request.animation.GlideAnimation;
+        import com.bumptech.glide.request.target.SimpleTarget;
+        import com.cleveroad.audiowidget.AudioWidget;
+        import java.io.IOException;
+        import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.List;
+        import java.util.Timer;
+        import java.util.TimerTask;
+        import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Simple implementation of music service.
